@@ -20,23 +20,31 @@ The dataset contains 4590 rows of player data from the last 10 NBA Seasons (2021
 2. Converting categorical 'Pos' columns into binary dummy variables
 3. Assigning players with a combo position (e.g PF/C) to the first position listed (PF)
 4. Creating a new feature column using an Approximate Value ('AV') formula as a performance metric.
+
 Credits Formula = (Points)+(Rebounds)+(Assists)+(Steal)+(Blocks)-(Field Goals Missed)-(Free Throws Missed)-(Turnovers)
+
 AV Formula = (Credits**(3/4) )/21
 
 #### Models:
 
--Simple Linear Regression
--Polynomial Regression with a degree = 2
--Lasso Cross Validation
--Ridge Regression
+Simple Linear Regression
+
+Polynomial Regression with a degree = 2
+
+Lasso Cross Validation
+
+Ridge Regression
 
 #### Model Evaluation and Selection:
 
 The entire training dataset was split into a 80/20 train-test holdout.
 
 Simple Linear Regression R2 on test data: 0.575
+
 Polynomial Regression R2 on test data: 0.682
+
 Lasso Cross Validation R2 on test data: 0.649
+
 Ridge Regression R2 on test data: 0.568
 
 I chose Polynomial Regression as my preferred model. The polynomial transformation of degree 2 placed higher weight on coefficients (e.g. PTS, FT, AST) with larger value ranges and larger variance. This conversely decreased the weight of stats such as STL and TOV when polynomial transformation was applied.
@@ -46,5 +54,7 @@ Although the Ridge Regression results were similar to that of the Linear Regress
 ## Tools
 
 Numpy, Pandas for data manipulation
+
 Scikit-learn for modeling
+
 Matplotlib and Seaborn for plotting and visualization
